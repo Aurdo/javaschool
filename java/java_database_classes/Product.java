@@ -4,6 +4,7 @@ package javaschool.java.java_database_classes;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Currency;
 import static javax.persistence.GenerationType.IDENTITY;
 
 
@@ -17,7 +18,7 @@ public class Product
 
     private Integer id;
     private String name;
-    private Float price;
+    private Currency price;
     private String description;
     private Set<Category> categories = new HashSet<Category>(0);
     private Set<Tag> tags = new HashSet<Tag>(0);
@@ -43,11 +44,11 @@ public class Product
     }
 
     @Column(name= "price")
-    public Float getPrice() {
+    public Currency getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(Currency price) {
         this.price = price;
     }
 

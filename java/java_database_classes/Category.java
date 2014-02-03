@@ -1,11 +1,20 @@
-package java_database_classes;
+package javaschool.java.java_database_classes;
 
+import javax.persistence.*;
 /**
  * Created by MSI on 02.02.14.
  */
-public class Category {
+@Entity
+@Table(name= "categories")
+public class Category
+{
+    @Id
+    @Column(name= "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Column(name= "name", length=80)
     private String name;
+    @Column(name= "description")
     private String description;
 
     public Integer getId() {

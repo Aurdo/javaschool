@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name="categories")
-public class Category implements Serializable {
+public class Category implements Serializable, baseDomainObject {
 
     private int id;
     private String name;
@@ -44,5 +44,10 @@ public class Category implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Transient
+    public Class getDomainObjectClass() {
+        return Category.class;
     }
 }

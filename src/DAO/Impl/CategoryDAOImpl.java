@@ -1,6 +1,6 @@
 package DAO.Impl;
 
-import DAO.CategoryDAO;
+import DAO.Abstract.CategoryDAO;
 import logic.Category;
 import org.hibernate.Session;
 import util.HibernateUtil;
@@ -65,6 +65,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 		    List<Category> cats = new ArrayList<Category>();
 		    try {
                 session = HibernateUtil.getSessionFactory().openSession();
+                Class tmmp = Category.class;
 		    	cats = session.createCriteria(Category.class).list();
 		    } catch (Exception e) {
 		    	JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка данных I/O", JOptionPane.OK_OPTION);

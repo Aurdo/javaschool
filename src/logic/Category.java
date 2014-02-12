@@ -7,7 +7,7 @@ import org.hibernate.annotations.GenericGenerator;
 import java.io.Serializable;
 
 @Entity
-@Table(name="categories")
+@Table(name = "categories")
 public class Category implements Serializable, baseDomainObject {
 
     private int id;
@@ -18,7 +18,7 @@ public class Category implements Serializable, baseDomainObject {
     }
 
     @Id
-    @Column(name = "id",unique = true,nullable = false)
+    @Column(name = "id", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
@@ -28,7 +28,7 @@ public class Category implements Serializable, baseDomainObject {
         this.id = id;
     }
 
-    @Column(name="name",nullable=false, length = 80,unique=true)
+    @Column(name = "name", nullable = false, length = 80, unique = true)
     public String getName() {
         return name;
     }
@@ -37,7 +37,7 @@ public class Category implements Serializable, baseDomainObject {
         this.name = name;
     }
 
-    @Column(name="description")
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }

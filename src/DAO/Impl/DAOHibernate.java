@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Alex on 2/10/14.
  */
 abstract class DAOHibernate<T extends baseDomainObject> implements DAO<T> {
-    public void add(T t) throws SQLException{
+    public void add(T t) throws SQLException {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
@@ -95,6 +95,6 @@ abstract class DAOHibernate<T extends baseDomainObject> implements DAO<T> {
         }
     }
 
-protected abstract Class getRealClass();
+    protected abstract Class getRealClass();
 
 }

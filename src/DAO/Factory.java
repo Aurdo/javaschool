@@ -1,5 +1,6 @@
 package DAO;
 
+import DAO.Abstract.CategoryDAO;
 import DAO.Impl.CategoryDAOImpl;
 
 public class Factory {

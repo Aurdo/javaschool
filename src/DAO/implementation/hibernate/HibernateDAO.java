@@ -9,9 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Alex on 2/10/14.
- */
+
 class HibernateDAO<T extends BaseDomainObject> implements dao.interfaces.DAO<T> {
 
     private Class<T> innerClass;

@@ -10,13 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-class HibernateDAO<T extends BaseDomainObject> implements dao.interfaces.DAO<T> {
+abstract class HibernateDAO<T extends BaseDomainObject> implements dao.interfaces.DAO<T> {
 
-    private Class<T> innerClass;
+    //private Class<T> innerClass;
 
-    protected HibernateDAO() {
+    /*protected HibernateDAO() {
         this.innerClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-    }
+    }*/
+    abstract protected Class getInnerClass();
 
     public void add(T t) throws SQLException {
         Session session = null;
@@ -27,7 +28,6 @@ class HibernateDAO<T extends BaseDomainObject> implements dao.interfaces.DAO<T> 
             session.getTransaction().commit();
         } catch (Exception e) {
             throw new SQLException("Data error", e);
-            //JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка данных", JOptionPane.OK_OPTION);
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
@@ -44,7 +44,6 @@ class HibernateDAO<T extends BaseDomainObject> implements dao.interfaces.DAO<T> 
             session.getTransaction().commit();
         } catch (Exception e) {
             throw new SQLException("Data error", e);
-            //JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка данных", JOptionPane.OK_OPTION);
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
@@ -57,10 +56,9 @@ class HibernateDAO<T extends BaseDomainObject> implements dao.interfaces.DAO<T> 
         T t = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            t = (T) session.load(this.innerClass, id);
+            t = (T) session.load(this.getInnerClass(), id);
         } catch (Exception e) {
             throw new SQLException("Data error", e);
-            //JOptionPane.showMessageDialog(null, e.getMessage(), "Data error", JOptionPane.OK_OPTION);
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
@@ -74,10 +72,9 @@ class HibernateDAO<T extends BaseDomainObject> implements dao.interfaces.DAO<T> 
         List<T> t = new ArrayList<T>();
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            t = session.createCriteria(this.innerClass).list();
+            t = session.createCriteria(this.getInnerClass()).list();
         } catch (Exception e) {
             throw new SQLException("Data error", e);
-            //JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка данных I/O", JOptionPane.OK_OPTION);
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
@@ -95,7 +92,6 @@ class HibernateDAO<T extends BaseDomainObject> implements dao.interfaces.DAO<T> 
             session.getTransaction().commit();
         } catch (Exception e) {
             throw new SQLException("Data error", e);
-            //JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка данных", JOptionPane.OK_OPTION);
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();

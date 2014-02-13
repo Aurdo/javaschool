@@ -37,9 +37,12 @@
       <div id="content">
           <div id="menu">
               <ul id="categories">
-                  <%ArrayList<Category> categories = (ArrayList<Category>)request.getAttribute("cats");
-                      for(int i=0;i<categories.size();i++){%>
-                  <li><a href="#"><%=categories.get(i).getName()%></a></li>
+                  <%
+                      ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("cats");
+                      for (int i = 0; i < categories.size(); i++) {
+                  %>
+                  <li><a href="#"><%=categories.get(i).getName()%>
+                  </a></li>
                   <%}%>
               </ul>
           </div>

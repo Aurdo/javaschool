@@ -5,7 +5,12 @@ import domain_objects.Category;
 
 public class HibernateDAOCategory extends HibernateDAO<Category> implements DAOCategory {
 
+    protected Class getInnerClass() {
+        return Category.class;
+    }
 }
+
+
 /*
 import domain_objects.Category;
 import org.hibernate.Session;

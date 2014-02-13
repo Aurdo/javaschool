@@ -1,5 +1,12 @@
 package dao.implementation.hibernate;
 
+import dao.interfaces.DAOCategory;
+import domain_objects.Category;
+
+public class HibernateDAOCategory extends HibernateDAO<Category> implements DAOCategory {
+
+}
+/*
 import domain_objects.Category;
 import org.hibernate.Session;
 import util.HibernateUtil;
@@ -94,3 +101,4 @@ public class HibernateDAOCategory implements dao.interfaces.DAOCategory {
 
 
 }
+*/

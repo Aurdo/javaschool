@@ -4,7 +4,6 @@ import domain_objects.BaseDomainObject;
 import org.hibernate.Session;
 import util.HibernateUtil;
 
-import javax.swing.*;
 import java.lang.reflect.ParameterizedType;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.List;
 /**
  * Created by Alex on 2/10/14.
  */
-abstract class HibernateDAO<T extends BaseDomainObject> implements dao.interfaces.DAO<T> {
+class HibernateDAO<T extends BaseDomainObject> implements dao.interfaces.DAO<T> {
 
     private Class<T> innerClass;
 
@@ -29,7 +28,8 @@ abstract class HibernateDAO<T extends BaseDomainObject> implements dao.interface
             session.save(t);
             session.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка данных", JOptionPane.OK_OPTION);
+            throw new SQLException("Data error", e);
+            //JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка данных", JOptionPane.OK_OPTION);
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
@@ -45,7 +45,8 @@ abstract class HibernateDAO<T extends BaseDomainObject> implements dao.interface
             session.update(t);
             session.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка данных", JOptionPane.OK_OPTION);
+            throw new SQLException("Data error", e);
+            //JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка данных", JOptionPane.OK_OPTION);
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
@@ -60,7 +61,8 @@ abstract class HibernateDAO<T extends BaseDomainObject> implements dao.interface
             session = HibernateUtil.getSessionFactory().openSession();
             t = (T) session.load(this.innerClass, id);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Data error", JOptionPane.OK_OPTION);
+            throw new SQLException("Data error", e);
+            //JOptionPane.showMessageDialog(null, e.getMessage(), "Data error", JOptionPane.OK_OPTION);
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
@@ -76,7 +78,8 @@ abstract class HibernateDAO<T extends BaseDomainObject> implements dao.interface
             session = HibernateUtil.getSessionFactory().openSession();
             t = session.createCriteria(this.innerClass).list();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка данных I/O", JOptionPane.OK_OPTION);
+            throw new SQLException("Data error", e);
+            //JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка данных I/O", JOptionPane.OK_OPTION);
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
@@ -93,7 +96,8 @@ abstract class HibernateDAO<T extends BaseDomainObject> implements dao.interface
             session.delete(this.getById(id));
             session.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка данных", JOptionPane.OK_OPTION);
+            throw new SQLException("Data error", e);
+            //JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка данных", JOptionPane.OK_OPTION);
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();

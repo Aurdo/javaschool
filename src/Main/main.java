@@ -15,9 +15,9 @@ public class Main extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
-        request.setAttribute("errors", "Ошибка базы данных");
+        request.setAttribute("errors", "Database error");
         try {
-            List<Category> cats = Factory.getInstance().CategoryDAO().getAll();
+            List<Category> cats = Factory.getInstance().DAOCategory().getAll();
             request.setAttribute("cats", cats);
             int size = cats.size();
             request.setAttribute("size", size);
@@ -33,7 +33,7 @@ public class Main extends HttpServlet {
             Category NewCat = new Category();
             NewCat.setName("TV");
             NewCat.setDescription("TV");
-            Factory.getInstance().CategoryDAO().add(NewCat);
+            Factory.getInstance().DAOCategory().add(NewCat);
         } catch (SQLException e) {
             request.setAttribute("errors", e);
         }

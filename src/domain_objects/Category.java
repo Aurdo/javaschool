@@ -44,8 +44,8 @@ public class Category implements Serializable, BaseDomainObject {
         this.description = description;
     }
 
-    @Transient
+    /*@Transient
     public Class getDomainObjectClass() {
         return Category.class;
-    }
+    }*/
 }

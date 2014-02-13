@@ -1,11 +1,10 @@
-package DAO;
+package dao;
 
-import DAO.Abstract.CategoryDAO;
-import DAO.Impl.CategoryDAOImpl;
+import dao.implementation.hibernate.HibernateDAOCategory;
 
 public class Factory {
 
-    private static CategoryDAO categoryDAO = null;
+    private static HibernateDAOCategory DAOCategory = null;
     private static Factory instance = null;
 
     public static synchronized Factory getInstance() {
@@ -15,11 +14,11 @@ public class Factory {
         return instance;
     }
 
-    public CategoryDAO CategoryDAO() {
-        if (categoryDAO == null) {
-            categoryDAO = new CategoryDAOImpl();
+    public HibernateDAOCategory CategoryDAO() {
+        if (DAOCategory == null) {
+            DAOCategory = new HibernateDAOCategory();
         }
-        return categoryDAO;
+        return DAOCategory;
     }
 
 }

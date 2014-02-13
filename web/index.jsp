@@ -1,4 +1,4 @@
-<%@ page import="logic.Category" %>
+<%@ page import="domain_objects.Category" %>
 <%@ page import="java.util.ArrayList" %>
 <%--
   Created by IntelliJ IDEA.

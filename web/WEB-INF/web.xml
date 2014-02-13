@@ -6,7 +6,7 @@
          version="3.0">
     <servlet>
         <servlet-name>main</servlet-name>
-        <servlet-class>Main.main</servlet-class>
+        <servlet-class>main.Main</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>main</servlet-name>

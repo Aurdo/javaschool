@@ -1,9 +1,7 @@
-package DAO.Impl;
+package dao.implementation.hibernate;
 
-import DAO.Abstract.DAO;
-import logic.baseDomainObject;
+import domain_objects.Category;
 import org.hibernate.Session;
-import org.hibernate.metamodel.domain.Superclass;
 import util.HibernateUtil;
 
 import javax.swing.*;
@@ -11,16 +9,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Alex on 2/10/14.
- */
-abstract class DAOHibernate<T extends baseDomainObject> implements DAO<T> {
-    public void add(T t) throws SQLException {
+public class HibernateDAOCategory implements dao.interfaces.DAOCategory {
+
+    public void add(Category cat) {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(t);
+            session.save(cat);
             session.getTransaction().commit();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка данных", JOptionPane.OK_OPTION);
@@ -31,12 +27,12 @@ abstract class DAOHibernate<T extends baseDomainObject> implements DAO<T> {
         }
     }
 
-    public void update(T t) throws SQLException {
+    public void update(Category cat) throws SQLException {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.update(t);
+            session.update(cat);
             session.getTransaction().commit();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка данных", JOptionPane.OK_OPTION);
@@ -47,28 +43,29 @@ abstract class DAOHibernate<T extends baseDomainObject> implements DAO<T> {
         }
     }
 
-    public T getById(int id) throws SQLException {
+    public Category getById(int id) throws SQLException {
         Session session = null;
-        T t = null;
+        Category cat = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            t = (T) session.load(this.getRealClass(), id);
+            cat = (Category) session.load(Category.class, id);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Data error", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка данных", JOptionPane.OK_OPTION);
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
             }
         }
-        return t;
+        return cat;
     }
 
-    public List<T> getAll() throws SQLException {
+    public List<Category> getAll() throws SQLException {
         Session session = null;
-        List<T> t = new ArrayList<T>();
+        List<Category> cats = new ArrayList<Category>();
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            t = session.createCriteria(this.getRealClass()).list();
+            Class tmmp = Category.class;
+            cats = session.createCriteria(Category.class).list();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка данных I/O", JOptionPane.OK_OPTION);
         } finally {
@@ -76,7 +73,7 @@ abstract class DAOHibernate<T extends baseDomainObject> implements DAO<T> {
                 session.close();
             }
         }
-        return t;
+        return cats;
     }
 
     public void remove(int id) throws SQLException {
@@ -95,6 +92,5 @@ abstract class DAOHibernate<T extends baseDomainObject> implements DAO<T> {
         }
     }
 
-    protected abstract Class getRealClass();
 
 }

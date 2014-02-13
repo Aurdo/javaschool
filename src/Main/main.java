@@ -1,4 +1,4 @@
-package Main;
+package main;
 
 import java.io.*;
 import java.sql.SQLException;
@@ -6,11 +6,11 @@ import java.util.List;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-import DAO.Factory;
+import dao.Factory;
 
-import logic.Category;
+import domain_objects.Category;
 
-public class main extends HttpServlet {
+public class Main extends HttpServlet {
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,

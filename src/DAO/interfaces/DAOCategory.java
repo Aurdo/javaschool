@@ -1,9 +1,8 @@
-package DAO.Abstract;
+package dao.interfaces;
 
-import DAO.Abstract.DAO;
-import logic.Category;
+import domain_objects.Category;
 
-public interface CategoryDAO extends DAO<Category> {
+public interface DAOCategory extends DAO<Category> {
     /*public void add(Category category) throws SQLException;
     public void update(Category category) throws SQLException;
 	public Category getById(int id) throws SQLException;

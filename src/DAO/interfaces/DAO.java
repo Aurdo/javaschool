@@ -1,6 +1,4 @@
-package DAO.Abstract;
-
-import logic.Category;
+package dao.interfaces;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -12,4 +12,13 @@
         <servlet-name>main</servlet-name>
         <url-pattern>/main</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>backend-login</servlet-name>
+        <servlet-class>main.backend.Auth</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>backend-login</servlet-name>
+        <url-pattern>/backend</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -4,6 +4,7 @@ import org.hibernate.Session;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import java.sql.SQLException;
 
 public class AppServletContextListener implements ServletContextListener {
     public Session session = null;
@@ -15,6 +16,12 @@ public class AppServletContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent arg0) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            this.session = HibernateUtil.getSessionFactory().openSession();
+
+        } catch (Exception e) {
+            //TODO:LOGGER
+        }
+
     }
 }

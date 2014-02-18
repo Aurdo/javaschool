@@ -15,12 +15,10 @@ public class Main extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
-        request.setAttribute("errors", "Database error");
+        //request.setAttribute("errors", "Database error");
         try {
             List<Category> cats = Factory.getInstance().DAOCategory().getAll();
             request.setAttribute("cats", cats);
-            int size = cats.size();
-            request.setAttribute("size", size);
         } catch (SQLException e) {
             request.setAttribute("errors", e);
         }
@@ -37,7 +35,7 @@ public class Main extends HttpServlet {
         } catch (SQLException e) {
             request.setAttribute("errors", e);
         }
-        request.getRequestDispatcher("/").forward(request, response);
+        request.getRequestDispatcher("MainTemplate.jsp").forward(request, response);
     }
 
 }

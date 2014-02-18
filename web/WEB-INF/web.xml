@@ -21,4 +21,10 @@
         <servlet-name>backend-login</servlet-name>
         <url-pattern>/backend</url-pattern>
     </servlet-mapping>
+
+    <listener>
+        <listener-class>
+            util.AppServletContextListener
+        </listener-class>
+    </listener>
 </web-app>

@@ -22,15 +22,16 @@ public class Auth extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
+        String password = request.getParameter("password");
         String ResultPage;
         HttpSession session = request.getSession();
         User User = (User) session.getAttribute("userInfo");
 
         if (User == null)
             User = new User();
-        if (username.equals("test")) {
+        if (username.equals("test") && password.equals("test")) {
             User.Login(username);
-            ResultPage = "/";
+            ResultPage = "/main";
             session.setAttribute("userInfo", User);
         } else {
             ResultPage = "/backend";

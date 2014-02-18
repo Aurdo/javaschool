@@ -20,82 +20,80 @@ abstract class HibernateDAO<T extends BaseDomainObject> implements dao.interface
     abstract protected Class getInnerClass();
 
     public void add(T t) throws SQLException {
-        Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
             session.beginTransaction();
             session.save(t);
             session.getTransaction().commit();
         } catch (Exception e) {
             throw new SQLException("Data error", e);
         } finally {
-            if (session != null && session.isOpen()) {
+            /*if (session != null && session.isOpen()) {
                 session.close();
-            }
+            }*/
         }
     }
 
     public void update(T t) throws SQLException {
-        Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
             session.beginTransaction();
             session.update(t);
             session.getTransaction().commit();
         } catch (Exception e) {
             throw new SQLException("Data error", e);
         } finally {
-            if (session != null && session.isOpen()) {
+            /*if (session != null && session.isOpen()) {
                 session.close();
-            }
+            }*/
         }
     }
 
     public T getById(int id) throws SQLException {
-        Session session = null;
+        //Session session = null;
         T t = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
             t = (T) session.load(this.getInnerClass(), id);
         } catch (Exception e) {
             throw new SQLException("Data error", e);
         } finally {
-            if (session != null && session.isOpen()) {
+            /*if (session != null && session.isOpen()) {
                 session.close();
-            }
+            }*/
         }
         return t;
     }
 
     public List<T> getAll() throws SQLException {
-        Session session = null;
+        //Session session = null;
         List<T> t = new ArrayList<T>();
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
             t = session.createCriteria(this.getInnerClass()).list();
         } catch (Exception e) {
             throw new SQLException("Data error", e);
         } finally {
-            if (session != null && session.isOpen()) {
+            /*if (session != null && session.isOpen()) {
                 session.close();
-            }
+            }*/
         }
         return t;
     }
 
     public void remove(int id) throws SQLException {
-        Session session = null;
+        //Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
             session.beginTransaction();
             session.delete(this.getById(id));
             session.getTransaction().commit();
         } catch (Exception e) {
             throw new SQLException("Data error", e);
         } finally {
-            if (session != null && session.isOpen()) {
+            /*f (session != null && session.isOpen()) {
                 session.close();
-            }
+            }*/
         }
     }
 

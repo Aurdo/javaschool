@@ -2,17 +2,17 @@ package util;
 
 /**
  * Created with IntelliJ IDEA.
- * User: Shichirin
+ * AuthUser: Shichirin
  * Date: 17.02.14
  * Time: 15:15
  * To change this template use File | Settings | File Templates.
  */
-public class User {
+public class AuthUser {
     String username = "";
     String error = "";
     boolean loginflag = false;
 
-    public User() {
+    public AuthUser() {
     }
 
     public String GetUser() {

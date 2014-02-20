@@ -1,3 +1,5 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="domain_objects.User" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +16,9 @@
         <div class="post-button">
             <button type="submit">Login</button>
         </div>
+
+        <%=request.getAttribute("User_info")%>
+
     </form>
 
 </div>

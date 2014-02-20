@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 
 /**
  * Created with IntelliJ IDEA.
- * User: Shichirin
+ * AuthUser: Shichirin
  * Date: 03.02.14
  * Time: 21:36
  * To change this template use File | Settings | File Templates.

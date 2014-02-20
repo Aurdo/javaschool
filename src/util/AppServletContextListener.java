@@ -1,5 +1,5 @@
 package util;
-
+/*
 import org.hibernate.Session;
 
 import javax.servlet.ServletContextEvent;
@@ -24,4 +24,4 @@ public class AppServletContextListener implements ServletContextListener {
         }
 
     }
-}
+}*/

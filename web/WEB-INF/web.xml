@@ -22,9 +22,9 @@
         <url-pattern>/backend</url-pattern>
     </servlet-mapping>
 
-    <listener>
+    <!--<listener>
         <listener-class>
             util.AppServletContextListener
         </listener-class>
-    </listener>
+    </listener>-->
 </web-app>

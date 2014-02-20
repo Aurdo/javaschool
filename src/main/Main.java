@@ -32,6 +32,8 @@ public class Main extends HttpServlet {
             NewCat.setName("TV4");
             NewCat.setDescription("TV4");
             Factory.getInstance().DAOCategory().add(NewCat);
+            List<Category> cats = Factory.getInstance().DAOCategory().getAll();
+            request.setAttribute("cats", cats);
         } catch (SQLException e) {
             request.setAttribute("errors", e);
         }

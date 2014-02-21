@@ -14,10 +14,16 @@ public class Auth extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        AuthUser User = (AuthUser) session.getAttribute("userInfo");
-        if (User == null)
-            User = new AuthUser();
-        if (User.IsLogin().equals("true"))
+        AuthUser User_Auth = (AuthUser) session.getAttribute("userInfo");
+        try {
+            User User = Factory.getInstance().DAOUser().getById(1);
+            request.setAttribute("User_info", User.getName());
+        } catch (SQLException e) {
+            ///
+        }
+        if (User_Auth == null)
+            User_Auth = new AuthUser();
+        if (User_Auth.IsLogin().equals("true"))
             response.sendRedirect("/");
         else
             request.getRequestDispatcher("backend/backend-login.jsp").forward(request, response);
@@ -29,26 +35,17 @@ public class Auth extends HttpServlet {
         String password = request.getParameter("password");
         String ResultPage;
         HttpSession session = request.getSession();
-        AuthUser User = (AuthUser) session.getAttribute("userInfo");
-        try {
-            User NewUser = new User();
-            NewUser.setName("TV4");
-            NewUser.setIs_admin(true);
-            NewUser.setPassword("1234");
-            Factory.getInstance().DAOUser().add(NewUser);
-        } catch (SQLException e) {
-            request.setAttribute("errors", e);
-        }
-        if (User == null)
-            User = new AuthUser();
+        AuthUser User_Auth = (AuthUser) session.getAttribute("userInfo");
+        if (User_Auth == null)
+            User_Auth = new AuthUser();
         if (username.equals("test") && password.equals("test")) {
-            User.Login(username);
+            User_Auth.Login(username);
             ResultPage = "/main";
-            session.setAttribute("userInfo", User);
+            session.setAttribute("userInfo", User_Auth);
         } else {
             ResultPage = "/backend";
-            User.SetError("Incorrect user name - " + username);
-            session.setAttribute("userInfo", User);
+            User_Auth.SetError("Incorrect user name - " + username);
+            session.setAttribute("userInfo", User_Auth);
         }
 
 

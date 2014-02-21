@@ -1,1 +1,2 @@
 <mapping class="domain_objects.Category"/>
+<mapping class="domain_objects.User"/>

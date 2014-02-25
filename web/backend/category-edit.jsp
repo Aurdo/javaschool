@@ -65,10 +65,16 @@
         <%
             Category category = (Category) request.getAttribute("cat");
         %>
-        <form action="/backend/category/edit/<%=category.getId()%>">
-            <input name="name" value="<%=category.getName()%>">
-            <input name="description" value="<%=category.getDescription()%>">
-            <button>Save</button>
+        <form method="post" action="/backend/category/edit/<%=category.getId()%>">
+            <p style="width: 50px;"><label>Name</label>
+                <input name="name" value="<%=category.getName()%>"></p>
+
+            <p style="width: 50px;"><label>Description</label>
+                <input name="description" value="<%=category.getDescription()%>"></p>
+
+            <p>
+                <button>Save</button>
+            </p>
         </form>
     </div>
 </div>

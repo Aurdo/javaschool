@@ -56,7 +56,7 @@ abstract class HibernateDAO<T extends BaseDomainObject> implements dao.interface
         T t = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            t = (T) session.load(this.getInnerClass(), id);
+            t = (T) session.get(this.getInnerClass(), id);
         } catch (Exception e) {
             throw new SQLException("Data error", e);
         } finally {

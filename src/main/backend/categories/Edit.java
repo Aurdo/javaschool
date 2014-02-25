@@ -42,6 +42,16 @@ public class Edit extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String name = request.getParameter("name");
+        String desc = request.getParameter("description");
+        try {
+            String url = request.getRequestURI().replace("/backend/category/edit/", "");
+            Category cat = Factory.getInstance().DAOCategory().getById(Integer.parseInt(url));
+            cat.setDescription(name);
+            cat.setDescription(desc);
+            Factory.getInstance().DAOCategory().update(cat);
+        } catch (SQLException e) {
+            request.setAttribute("errors", e);
+        }
     }
 }

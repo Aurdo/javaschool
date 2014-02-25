@@ -2,6 +2,7 @@ package main.backend.categories;
 
 import dao.Factory;
 import domain_objects.Category;
+import domain_objects.User;
 import util.AuthUser;
 
 import javax.servlet.ServletException;
@@ -29,8 +30,8 @@ public class Edit extends HttpServlet {
         if (User_Auth.IsLogin().equals("true")) {
             try {
                 String url = request.getRequestURI().replace("/backend/category/edit/", "");
-                <Category > cat = Factory.getInstance().DAOCategory().getById(Integer.parseInt(url));
-                request.setAttribute("cats", cat);
+                Category cat = Factory.getInstance().DAOCategory().getById(Integer.parseInt(url));
+                request.setAttribute("cat", cat);
             } catch (SQLException e) {
                 request.setAttribute("errors", e);
             }

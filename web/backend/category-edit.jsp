@@ -1,5 +1,5 @@
 <%@ page import="domain_objects.Category" %>
-<%@ page import="java.util.ArrayList" %>
+
 <%--
   Created by IntelliJ IDEA.
   AuthUser: Shichirin
@@ -62,18 +62,14 @@
         </ul>
     </div>
     <div class="inner-content">
-        <table>
-
-            <thead>
-            <tr>
-                <td style="width: 300px;">Name</td>
-                <td style="width: 200px">Action</td>
-            </tr>
-            </thead>
-            <tbody>
-            <%=request.getAttribute("id")%>
-            </tbody>
-        </table>
+        <%
+            Category category = (Category) request.getAttribute("cat");
+        %>
+        <form action="/backend/category/edit/<%=category.getId()%>">
+            <input name="name" value="<%=category.getName()%>">
+            <input name="description" value="<%=category.getDescription()%>">
+            <button>Save</button>
+        </form>
     </div>
 </div>
 <div id="footer"></div>

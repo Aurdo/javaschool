@@ -24,7 +24,7 @@
 
     <servlet>
         <servlet-name>backend-category-list</servlet-name>
-        <servlet-class>main.backend.categories.Categories</servlet-class>
+        <servlet-class>main.backend.categories.List</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>backend-category-list</servlet-name>
@@ -47,6 +47,15 @@
     <servlet-mapping>
         <servlet-name>backend-category-add</servlet-name>
         <url-pattern>/backend/category/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>backend-category-delete</servlet-name>
+        <servlet-class>main.backend.categories.Delete</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>backend-category-delete</servlet-name>
+        <url-pattern>/backend/category/delete/*</url-pattern>
     </servlet-mapping>
 
 

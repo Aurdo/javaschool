@@ -47,11 +47,13 @@ public class Edit extends HttpServlet {
         try {
             String url = request.getRequestURI().replace("/backend/category/edit/", "");
             Category cat = Factory.getInstance().DAOCategory().getById(Integer.parseInt(url));
-            cat.setDescription(name);
+            cat.setName(name);
             cat.setDescription(desc);
             Factory.getInstance().DAOCategory().update(cat);
+            response.sendRedirect("/backend/category");
         } catch (SQLException e) {
             request.setAttribute("errors", e);
         }
+
     }
 }

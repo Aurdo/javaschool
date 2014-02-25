@@ -40,6 +40,15 @@
         <url-pattern>/backend/category/edit/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>backend-category-add</servlet-name>
+        <servlet-class>main.backend.categories.Add</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>backend-category-add</servlet-name>
+        <url-pattern>/backend/category/add</url-pattern>
+    </servlet-mapping>
+
 
     <!--<listener>
         <listener-class>

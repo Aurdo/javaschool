@@ -1,5 +1,5 @@
 <%@ page import="domain_objects.Category" %>
-<%@ page import="java.util.ArrayList" %>
+
 <%--
   Created by IntelliJ IDEA.
   AuthUser: Shichirin
@@ -62,28 +62,17 @@
         </ul>
     </div>
     <div class="inner-content">
-        <div id="sub-menu"><a href="/backend/category/add">Add</a></div>
-        <table>
-            <thead>
-            <tr>
-                <td style="width: 300px;">Name</td>
-                <td style="width: 200px">Action</td>
-            </tr>
-            </thead>
-            <tbody>
-            <%
-                ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("cats");
-                for (int i = 0; i < categories.size(); i++) {
-            %>
-            <tr>
-                <td><%=categories.get(i).getName()%>
-                </td>
-                <td><a href="/backend/category/edit/<%=categories.get(i).getId()%>">Edit</a> <a href="">Delete</a> <a
-                        href="">Up</a> <a href="">Down</a></td>
-            </tr>
-            <%}%>
-            </tbody>
-        </table>
+        <form method="post" action="/backend/category/add">
+            <p style="width: 50px;"><label>Name</label>
+                <input name="name" value=""></p>
+
+            <p style="width: 50px;"><label>Description</label>
+                <input name="description" value=""></p>
+
+            <p>
+                <button>Save</button>
+            </p>
+        </form>
     </div>
 </div>
 <div id="footer"></div>

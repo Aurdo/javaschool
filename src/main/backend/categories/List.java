@@ -21,7 +21,7 @@ import java.util.List;
  * Time: 11:15
  * To change this template use File | Settings | File Templates.
  */
-public class Categories extends HttpServlet {
+public class List extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -30,7 +30,7 @@ public class Categories extends HttpServlet {
             User_Auth = new AuthUser();
         if (User_Auth.IsLogin().equals("true")) {
             try {
-                List<Category> cats = Factory.getInstance().DAOCategory().getAll();
+                java.util.List<Category> cats = Factory.getInstance().DAOCategory().getAll();
                 request.setAttribute("cats", cats);
             } catch (SQLException e) {
                 request.setAttribute("errors", e);

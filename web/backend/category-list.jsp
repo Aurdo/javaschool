@@ -63,27 +63,31 @@
     </div>
     <div class="inner-content">
         <div id="sub-menu"><a href="/backend/category/add">Add</a></div>
-        <table>
-            <thead>
-            <tr>
-                <td style="width: 300px;">Name</td>
-                <td style="width: 200px">Action</td>
-            </tr>
-            </thead>
-            <tbody>
-            <%
-                ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("cats");
-                for (int i = 0; i < categories.size(); i++) {
-            %>
-            <tr>
-                <td><%=categories.get(i).getName()%>
-                </td>
-                <td><a href="/backend/category/edit/<%=categories.get(i).getId()%>">Edit</a> <a href="">Delete</a> <a
-                        href="">Up</a> <a href="">Down</a></td>
-            </tr>
-            <%}%>
-            </tbody>
-        </table>
+        <form method="post" name="categories-list" action="">
+            <table>
+                <thead>
+                <tr>
+                    <td style="width: 300px;">Name</td>
+                    <td style="width: 200px">Action</td>
+                </tr>
+                </thead>
+                <tbody>
+                <%
+                    ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("cats");
+                    for (int i = 0; i < categories.size(); i++) {
+                %>
+
+                <tr>
+                    <td><%=categories.get(i).getName()%>
+                    </td>
+                    <td><a href="/backend/category/edit/<%=categories.get(i).getId()%>">Edit</a> <a
+                            href="/backend/category/delete/<%=categories.get(i).getId()%>">Delete</a> <a
+                            href="">Up</a> <a href="">Down</a></td>
+                </tr>
+                <%}%>
+                </tbody>
+            </table>
+        </form>
     </div>
 </div>
 <div id="footer"></div>

@@ -93,7 +93,7 @@ public class HibernateDAOCategory implements dao.interfaces.DAOCategory {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.delete(this.getById(id));
+            session.Delete(this.getById(id));
             session.getTransaction().commit();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка данных", JOptionPane.OK_OPTION);

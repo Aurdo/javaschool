@@ -17,7 +17,6 @@
             <button type="submit">Login</button>
         </div>
 
-        <%=request.getAttribute("User_info")%>
 
     </form>
 

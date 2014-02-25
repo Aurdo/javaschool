@@ -22,6 +22,25 @@
         <url-pattern>/backend</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>backend-category-list</servlet-name>
+        <servlet-class>main.backend.categories.Categories</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>backend-category-list</servlet-name>
+        <url-pattern>/backend/category</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>backend-category-edit</servlet-name>
+        <servlet-class>main.backend.categories.Edit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>backend-category-edit</servlet-name>
+        <url-pattern>/backend/category/edit/*</url-pattern>
+    </servlet-mapping>
+
+
     <!--<listener>
         <listener-class>
             util.AppServletContextListener

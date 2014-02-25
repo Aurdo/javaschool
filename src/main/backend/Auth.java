@@ -15,16 +15,10 @@ public class Auth extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         AuthUser User_Auth = (AuthUser) session.getAttribute("userInfo");
-        try {
-            User User = Factory.getInstance().DAOUser().getById(1);
-            request.setAttribute("User_info", User.getName());
-        } catch (SQLException e) {
-            ///
-        }
         if (User_Auth == null)
             User_Auth = new AuthUser();
         if (User_Auth.IsLogin().equals("true"))
-            response.sendRedirect("/");
+            response.sendRedirect("/backend/category");
         else
             request.getRequestDispatcher("backend/backend-login.jsp").forward(request, response);
     }
@@ -40,7 +34,7 @@ public class Auth extends HttpServlet {
             User_Auth = new AuthUser();
         if (username.equals("test") && password.equals("test")) {
             User_Auth.Login(username);
-            ResultPage = "/main";
+            ResultPage = "/backend/category";
             session.setAttribute("userInfo", User_Auth);
         } else {
             ResultPage = "/backend";

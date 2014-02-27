@@ -16,8 +16,8 @@
         <div class="post-button">
             <button type="submit">Login</button>
         </div>
-        <%=request.getAttribute("User")%>
 
+        <%=request.getAttribute("User")%>
     </form>
 
 </div>

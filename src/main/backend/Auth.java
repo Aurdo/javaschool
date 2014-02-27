@@ -17,7 +17,7 @@ public class Auth extends HttpServlet {
         AuthUser User_Auth = (AuthUser) session.getAttribute("userInfo");
         try {
             User User_Info = Factory.getInstance().DAOUser().getByName("admin");
-            request.setAttribute("User", User_Info.getName());
+            request.setAttribute("User", User_Info.getId());
         } catch (SQLException e) {
             request.setAttribute("errors", e);
         }

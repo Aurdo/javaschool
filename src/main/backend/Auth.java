@@ -15,6 +15,12 @@ public class Auth extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         AuthUser User_Auth = (AuthUser) session.getAttribute("userInfo");
+        try {
+            User User_Info = Factory.getInstance().DAOUser().getByName("admin");
+            request.setAttribute("User", User_Info.getName());
+        } catch (SQLException e) {
+            request.setAttribute("errors", e);
+        }
         if (User_Auth == null)
             User_Auth = new AuthUser();
         if (User_Auth.IsLogin().equals("true"))

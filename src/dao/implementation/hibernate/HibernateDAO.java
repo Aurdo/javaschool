@@ -2,6 +2,7 @@ package dao.implementation.hibernate;
 
 import domain_objects.BaseDomainObject;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import util.HibernateUtil;
 
 import java.lang.reflect.ParameterizedType;
@@ -97,6 +98,22 @@ abstract class HibernateDAO<T extends BaseDomainObject> implements dao.interface
                 session.close();
             }
         }
+    }
+
+    public T getByName(String name) throws SQLException {
+        Session session = null;
+        T t = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            t = (T) session.createCriteria(this.getInnerClass()).add(Restrictions.eq("name", name)).list();
+        } catch (Exception e) {
+            throw new SQLException("Data error", e);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return t;
     }
 
 }

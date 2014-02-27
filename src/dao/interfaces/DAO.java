@@ -19,4 +19,6 @@ public interface DAO<T extends BaseDomainObject> {
 
     public void remove(int id) throws SQLException;
 
+    public T getByName(String name) throws SQLException;
+
 }

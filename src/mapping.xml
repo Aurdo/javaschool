@@ -1,2 +1,4 @@
 <mapping class="domain_objects.Category"/>
 <mapping class="domain_objects.User"/>
+<mapping class="domain_objects.Product"/>
+<mapping class="domain_objects.Tag"/>

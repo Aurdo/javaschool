@@ -8,6 +8,9 @@ public class HibernateDAOCategory extends HibernateDAO<Category> implements DAOC
     protected Class getInnerClass() {
         return Category.class;
     }
+
+    public void swap(int id1, int id2) {
+    }
 }
 
 

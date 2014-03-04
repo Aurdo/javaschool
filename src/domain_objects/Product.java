@@ -6,6 +6,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.Currency;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Alex on 3/2/14.
@@ -17,8 +18,8 @@ public class Product extends IdentifiableEntity {
     private String name;
     private Currency price;
     private String description;
-    private HashSet<Category> categories;
-    private HashSet<Tag> tags;
+    private Set<Category> categories = new HashSet<>(0);
+    private Set<Tag> tags = new HashSet<>(0);
 
     @Column(name = "name", length = 80, nullable = false)
     public String getName() {
@@ -48,20 +49,20 @@ public class Product extends IdentifiableEntity {
     }
 
     @ManyToMany(mappedBy = "products")
-    public HashSet<Category> getCategories() {
+    public Set<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(HashSet<Category> categories) {
+    public void setCategories(Set<Category> categories) {
         this.categories = categories;
     }
 
     @ManyToMany(mappedBy = "products")
-    public HashSet<Tag> getTags() {
+    public Set<Tag> getTags() {
         return tags;
     }
 
-    public void setTags(HashSet<Tag> tags) {
+    public void setTags(Set<Tag> tags) {
         this.tags = tags;
     }
 }

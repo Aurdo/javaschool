@@ -35,4 +35,24 @@ public class HibernateDAOUser extends HibernateDAO<User> implements DAOUser {
         return Info;
     }
 
+    public User getForAuth(String name, String password) throws SQLException {
+        Session session = null;
+        //List<User> Info;
+        User Info;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            //Info = session.createCriteria(User.class).add(Restrictions.eq("name", name)).list();
+            Info = (User) session.createCriteria(User.class).add(Restrictions.eq("name", name))
+                    .add(Restrictions.eq("password", password))
+                    .uniqueResult();
+        } catch (Exception e) {
+            throw new SQLException("Data error", e);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return Info;
+    }
+
 }

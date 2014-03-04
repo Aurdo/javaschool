@@ -2,6 +2,7 @@ package domain_objects;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Alex on 3/3/14.
@@ -10,7 +11,7 @@ import java.util.HashSet;
 @Table(name = "tags")
 public class Tag extends IdentifiableEntity {
     private String tag;
-    private HashSet<Product> products;
+    private Set<Product> products = new HashSet<>(0);
 
     @Column(name = "tag", length = 100, nullable = false, unique = true)
     public String getTag() {
@@ -25,11 +26,11 @@ public class Tag extends IdentifiableEntity {
     @JoinTable(name = "tag_to_product",
             joinColumns = {@JoinColumn(name = "tag_id", nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "product_id", nullable = false)})
-    public HashSet<Product> getProducts() {
+    public Set<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(HashSet<Product> products) {
+    public void setProducts(Set<Product> products) {
         this.products = products;
     }
 }

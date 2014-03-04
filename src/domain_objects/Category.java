@@ -2,6 +2,7 @@ package domain_objects;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "categories")
@@ -12,7 +13,7 @@ public class Category extends IdentifiableEntity {
     //private int id;
     private String name;
     private String description;
-    private HashSet<Product> products;
+    private Set<Product> products = new HashSet<>(0);
 
     public Category() {
     }
@@ -53,13 +54,13 @@ public class Category extends IdentifiableEntity {
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "product_to_category",
-            joinColumns = {@JoinColumn(name = "category_id", nullable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "product_id", nullable = false)})
-    public HashSet<Product> getProducts() {
+            joinColumns = {@JoinColumn(name = "category_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id")})
+    public Set<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(HashSet<Product> products) {
+    public void setProducts(Set<Product> products) {
         this.products = products;
     }
 }

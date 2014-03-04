@@ -17,7 +17,7 @@
             <button type="submit">Login</button>
         </div>
 
-        <%=request.getAttribute("User")%>
+        <%=request.getAttribute("error") != null ? request.getAttribute("error") : ""%>
     </form>
 
 </div>

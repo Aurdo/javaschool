@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.Currency;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +16,7 @@ import java.util.Set;
 @Table(name = "products")
 public class Product extends IdentifiableEntity {
     private String name;
-    private Currency price;
+    private BigDecimal price;
     private String description;
     private Set<Category> categories = new HashSet<>(0);
     private Set<Tag> tags = new HashSet<>(0);
@@ -31,11 +31,11 @@ public class Product extends IdentifiableEntity {
     }
 
     @Column(name = "price", length = 100, nullable = false)
-    public Currency getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Currency price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

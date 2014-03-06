@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.lang.reflect.Array;
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.sql.SQLException;
 
 /**
@@ -45,7 +46,8 @@ public class Add extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String desc = request.getParameter("description");
-        Integer price = Integer.parseInt(request.getParameter("price"));
+        //Integer price = Integer.parseInt(request.getParameter("price"));
+        BigDecimal price = new BigDecimal(request.getParameter("price"), new MathContext(2));
         //Array cats = request.getParameter("description");
         try {
             Product product = new Product();

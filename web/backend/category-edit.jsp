@@ -12,6 +12,7 @@
     <div id="menu">
         <ul>
             <li><a href="/backend/category">Categories</a></li>
+            <li><a href="/backend/products">Products</a></li>
         </ul>
     </div>
     <div class="inner-content">

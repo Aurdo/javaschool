@@ -1,4 +1,4 @@
-<%@ page import="domain_objects.Category" %>
+<%@ page import="domain_objects.Product" %>
 <%@ page import="java.util.ArrayList" %>
 <%--
   Created by IntelliJ IDEA.
@@ -16,8 +16,9 @@
         </ul>
     </div>
     <div class="inner-content">
-        <div id="sub-menu"><a href="/backend/category/add">Add</a></div>
-        <form method="post" name="categories-list" action="">
+        <div id="sub-menu"><a href="/backend/products/add">Add</a></div>
+
+        <form method="post" name="Products-list" action="">
             <table>
                 <thead>
                 <tr>
@@ -27,18 +28,19 @@
                 </thead>
                 <tbody>
                 <%
-                    ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("cats");
-                    for (int i = 0; i < categories.size(); i++) {
+                    ArrayList<Product> products = (ArrayList<Product>) request.getAttribute("products");
+                    if(products != null){
+                    for (int i = 0; i < products.size(); i++) {
                 %>
 
                 <tr>
-                    <td><%=categories.get(i).getName()%>
+                    <td><%=products.get(i).getName()%>
                     </td>
-                    <td><a href="/backend/category/edit/<%=categories.get(i).getId()%>">Edit</a> <a
-                            href="/backend/category/delete/<%=categories.get(i).getId()%>">Delete</a> <a
+                    <td><a href="/backend/products/edit/<%=products.get(i).getId()%>">Edit</a> <a
+                            href="/backend/products/delete/<%=products.get(i).getId()%>">Delete</a> <a
                             href="">Up</a> <a href="">Down</a></td>
                 </tr>
-                <%}%>
+                <%}}%>
                 </tbody>
             </table>
         </form>

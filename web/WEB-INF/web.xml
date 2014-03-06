@@ -58,10 +58,21 @@
         <url-pattern>/backend/category/delete/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>backend-products</servlet-name>
+        <servlet-class>main.backend.products.List</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>backend-products</servlet-name>
+        <url-pattern>/backend/products</url-pattern>
+    </servlet-mapping>
 
-    <!--<listener>
-        <listener-class>
-            util.AppServletContextListener
-        </listener-class>
-    </listener>-->
+    <servlet>
+        <servlet-name>backend-products-add</servlet-name>
+        <servlet-class>main.backend.products.Add</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>backend-products-add</servlet-name>
+        <url-pattern>/backend/products/add</url-pattern>
+    </servlet-mapping>
 </web-app>

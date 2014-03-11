@@ -3,7 +3,9 @@ package main.backend.products;
 import dao.Factory;
 import domain_objects.Category;
 import domain_objects.Product;
+import org.hibernate.Session;
 import util.AuthUser;
+import util.HibernateUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +16,8 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -46,20 +50,23 @@ public class Add extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String desc = request.getParameter("description");
-        //Integer price = Integer.parseInt(request.getParameter("price"));
-        BigDecimal price = new BigDecimal(request.getParameter("price"), new MathContext(2));
-        //Array cats = request.getParameter("description");
-        try {
-            Product product = new Product();
-            product.setName(name);
-            product.setDescription(desc);
-            product.setPrice(price);
+        String[] categoris = request.getParameterValues("categories");
 
-            Factory.getInstance().DAOProduct().add(product);
+        BigDecimal price = new BigDecimal(request.getParameter("price"), new MathContext(2));
+        try {
+            Product prod = new Product();
+            prod.setName(name);
+            prod.setDescription(desc);
+            prod.setPrice(price);
+            Category cat = Factory.getInstance().DAOCategory().getById(1);
+            Set<Category> categories = new HashSet<Category>();
+            categories.add(cat);
+            prod.setCategories(categories);
+            Factory.getInstance().DAOProduct().add(prod);
             response.sendRedirect("/backend/products");
         } catch (SQLException e) {
             request.setAttribute("errors", e);
         }
-
+        //response.sendRedirect("/backend/products");
     }
 }

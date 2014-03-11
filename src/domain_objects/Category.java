@@ -13,7 +13,7 @@ public class Category extends IdentifiableEntity {
     //private int id;
     private String name;
     private String description;
-    private Set<Product> products = new HashSet<>(0);
+    private Set<Product> products = new HashSet<Product>(0);
 
     public Category() {
     }
@@ -52,10 +52,7 @@ public class Category extends IdentifiableEntity {
         return Category.class;
     }*/
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name = "product_to_category",
-            joinColumns = {@JoinColumn(name = "category_id")},
-            inverseJoinColumns = {@JoinColumn(name = "product_id")})
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "categories")
     public Set<Product> getProducts() {
         return products;
     }

@@ -1,9 +1,6 @@
 package domain_objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,7 +15,7 @@ public class Product extends IdentifiableEntity {
     private String name;
     private BigDecimal price;
     private String description;
-    private Set<Category> categories = new HashSet<>(0);
+    private Set<Category> categories = new HashSet<Category>(0);
     private Set<Tag> tags = new HashSet<>(0);
 
     @Column(name = "name", length = 80, nullable = false)
@@ -48,9 +45,13 @@ public class Product extends IdentifiableEntity {
         this.description = description;
     }
 
-    @ManyToMany(mappedBy = "products")
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "product_to_category", joinColumns = {
+            @JoinColumn(name = "product_id", nullable = false, updatable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "category_id",
+                    nullable = false, updatable = false) })
     public Set<Category> getCategories() {
-        return categories;
+        return this.categories;
     }
 
     public void setCategories(Set<Category> categories) {

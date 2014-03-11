@@ -17,7 +17,7 @@
         </ul>
     </div>
     <div class="inner-content">
-        <form method="post" action="/backend/products/add" enctype="multipart/form-data">
+        <form method="post" action="/backend/products/add">
 
             <p style="width: 50px;"><label>Name</label>
                 <input name="name">
@@ -34,8 +34,8 @@
             </p>
             <p style="width: 50px;">
                 <label>Categories:</label>
-                <select multiple name="categories[]">
-                    <%
+                <select multiple name="categories">
+                <%
                         ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("cats");
                         for (int i = 0; i < categories.size(); i++) {
                     %>

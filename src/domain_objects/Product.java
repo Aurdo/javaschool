@@ -27,7 +27,7 @@ public class Product extends IdentifiableEntity {
         this.name = name;
     }
 
-    @Column(name = "price", length = 100, nullable = false)
+    @Column(name = "price", nullable = false)
     public BigDecimal getPrice() {
         return price;
     }

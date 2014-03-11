@@ -24,7 +24,7 @@ public class HibernateDAOCategory extends HibernateDAO<Category> implements DAOC
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             Category cats;
-            cats = (Category) session.createCriteria(Category.class).add(Restrictions.in( "name", ids ) ).list();
+            cats = (Category) session.createCriteria(Category.class).add(Restrictions.in( "id", ids ) ).list();
 
             categories.add(cats);
         } catch (Exception e) {

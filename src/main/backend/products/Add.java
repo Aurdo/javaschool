@@ -50,7 +50,11 @@ public class Add extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String desc = request.getParameter("description");
-        String[] categoris = request.getParameterValues("categories");
+        String[] categories = request.getParameterValues("categories");
+        /*final int[] categoris_ints = new int[categoris.length];
+        for (int i=0; i < categoris.length; i++) {
+            categoris_ints[i] = Integer.parseInt(categoris[i]);
+        }*/
 
         BigDecimal price = new BigDecimal(request.getParameter("price"), new MathContext(2));
         try {
@@ -58,10 +62,8 @@ public class Add extends HttpServlet {
             prod.setName(name);
             prod.setDescription(desc);
             prod.setPrice(price);
-            Category cat = Factory.getInstance().DAOCategory().getById(1);
-            Set<Category> categories = new HashSet<Category>();
-            categories.add(cat);
-            prod.setCategories(categories);
+            Set cat = Factory.getInstance().DAOCategory().getForProductCreate(categories);
+            prod.setCategories(cat);
             Factory.getInstance().DAOProduct().add(prod);
             response.sendRedirect("/backend/products");
         } catch (SQLException e) {

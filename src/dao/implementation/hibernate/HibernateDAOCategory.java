@@ -2,6 +2,13 @@ package dao.implementation.hibernate;
 
 import dao.interfaces.DAOCategory;
 import domain_objects.Category;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+import util.HibernateUtil;
+
+import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
 
 public class HibernateDAOCategory extends HibernateDAO<Category> implements DAOCategory {
 
@@ -11,6 +18,26 @@ public class HibernateDAOCategory extends HibernateDAO<Category> implements DAOC
 
     public void swap(int id1, int id2) {
     }
+    public Set getForProductCreate(String[] ids) throws SQLException {
+        Session session = null;
+        Set<Category> categories = new HashSet<Category>();
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            Category cats;
+            cats = (Category) session.createCriteria(Category.class).add(Restrictions.in( "name", ids ) ).list();
+
+            categories.add(cats);
+        } catch (Exception e) {
+            throw new SQLException("Data error", e);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+
+        return categories;
+    }
+
 }
 
 

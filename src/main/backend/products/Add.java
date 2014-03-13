@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
@@ -51,22 +52,23 @@ public class Add extends HttpServlet {
         String name = request.getParameter("name");
         String desc = request.getParameter("description");
         String[] categories = request.getParameterValues("categories");
-        /*final int[] categoris_ints = new int[categoris.length];
-        for (int i=0; i < categoris.length; i++) {
-            categoris_ints[i] = Integer.parseInt(categoris[i]);
-        }*/
+        Set<Integer> cats = new HashSet<Integer>();
+        for (int i = 0; i < categories.length; i++) {
+            cats.add(Integer.parseInt(categories[i]));
+        }
 
+        //BigDecimal price = new BigDecimal(request.getParameter("price"), new MathContext(2, RoundingMode.HALF_UP));
         BigDecimal price = new BigDecimal(request.getParameter("price"), new MathContext(2));
         try {
             Product prod = new Product();
             prod.setName(name);
             prod.setDescription(desc);
             prod.setPrice(price);
-            Set cat = Factory.getInstance().DAOCategory().getForProductCreate(categories);
+            Set cat = Factory.getInstance().DAOCategory().getForProductCreate(cats);
             prod.setCategories(cat);
             Factory.getInstance().DAOProduct().add(prod);
             response.sendRedirect("/backend/products");
-        } catch (SQLException e) {
+        } catch (Exception e) {
             request.setAttribute("errors", e);
         }
         //response.sendRedirect("/backend/products");

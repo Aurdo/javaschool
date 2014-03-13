@@ -18,15 +18,15 @@ public class HibernateDAOCategory extends HibernateDAO<Category> implements DAOC
 
     public void swap(int id1, int id2) {
     }
-    public Set getForProductCreate(String[] ids) throws SQLException {
+
+    public Set getForProductCreate(Set<Integer> ids) throws SQLException {
         Session session = null;
-        Set<Category> categories = new HashSet<Category>();
+        Set<Category> categories = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            Category cats;
-            cats = (Category) session.createCriteria(Category.class).add(Restrictions.in( "id", ids ) ).list();
+            //Category cats;
+            categories = new HashSet<Category>(session.createCriteria(Category.class).add(Restrictions.in("id", ids)).list());
 
-            categories.add(cats);
         } catch (Exception e) {
             throw new SQLException("Data error", e);
         } finally {

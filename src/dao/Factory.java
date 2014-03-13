@@ -6,12 +6,12 @@ import dao.implementation.hibernate.HibernateDAOUser;
 
 public class Factory {
 
-    private static HibernateDAOCategory DAO_CATEGORY = null;
-    private static HibernateDAOUser DAO_USER = null;
-    private static HibernateDAOProduct DAO_PRODUCT = null;
+    private HibernateDAOCategory DAO_CATEGORY = null;
+    private HibernateDAOUser DAO_USER = null;
+    private HibernateDAOProduct DAO_PRODUCT = null;
     private static Factory INSTANCE = null;
 
-    public static synchronized Factory getInstance() {
+    public static Factory getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new Factory();
         }

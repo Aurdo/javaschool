@@ -1,21 +1,20 @@
 package dao.implementation.hibernate;
 
+import dao.interfaces.DAOCRUD;
 import domain_objects.BaseDomainObject;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 import util.HibernateUtil;
 
-import java.lang.reflect.ParameterizedType;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-abstract class HibernateDAO<T extends BaseDomainObject> implements dao.interfaces.DAO<T> {
+abstract class HibernateDAOCRUD<T extends BaseDomainObject> implements DAOCRUD<T> {
 
     //private Class<T> innerClass;
 
-    /*protected HibernateDAO() {
+    /*protected HibernateDAOCRUD() {
         this.innerClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }*/
     abstract protected Class getInnerClass();

@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by aurdo on 06/02/14.
  */
-public interface DAO<T extends BaseDomainObject> {
+public interface DAOCRUD<T extends BaseDomainObject> {
     public void add(T obj) throws SQLException;
 
     public void update(T obj) throws SQLException;
